@@ -7,7 +7,7 @@ No Minecraft Plugins or Addons required.
 
 ## Requirements
 - Minecraft Bedrock Server Running in Docker with ```stdin_open: true``` and ```tty: true```
-- Running Minecraft Logger Container with Write Access to Docker Socket on the same Host
+- Running Minecraft Logger Container with Read Access to Docker Socket on the same Host
 
 ## How to run
 If you run your Minecraft server with docker compose you can add a new service and define the environment variables:
@@ -20,7 +20,7 @@ bds-logger:
       MGRAM_CHAT_ID: "YOUR_CHAT_ID"
       MGRAM_CONTAINER_NAME: "YOUR_CONTAINER_NAME"
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro
 ```
 
 
