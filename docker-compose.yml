@@ -22,7 +22,7 @@ services:
       MGRAM_CONTAINER_NAME: "YOUR_CONTAINER_NAME"
     container_name: bds-logger
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock 
+      - /var/run/docker.sock:/var/run/docker.sock:ro 
                                                                
 volumes: 
   bds:
