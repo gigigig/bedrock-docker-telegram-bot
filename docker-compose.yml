@@ -1,0 +1,28 @@
+version: '3.4' 
+services: 
+  bds: 
+    image: itzg/minecraft-bedrock-server 
+    container_name: bds-server
+    environment: 
+      EULA: "TRUE" 
+      GAMEMODE: survival 
+      DIFFICULTY: easy
+    ports: 
+      - 19132:19132/udp 
+    volumes: 
+      - bds:/data
+    stdin_open: true 
+    tty: true 
+  
+  bds-logger:
+    image: ghcr.io/gigigig/minecrafttelegramdocker:3.0
+    environment:
+      MGRAM_BOT_TOKEN: "YOUR_TOKEN"
+      MGRAM_CHAT_ID: "YOUR_CHAT_ID"
+      MGRAM_CONTAINER_NAME: "YOUR_CONTAINER_NAME"
+    container_name: bds-logger
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock 
+                                                               
+volumes: 
+  bds:
