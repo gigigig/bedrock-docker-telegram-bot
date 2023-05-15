@@ -3,6 +3,8 @@ A Telegram Notfication Service for Docker Minecraft Bedrock Servers.
 Notifies upon Connection or Disconnection of Players. 
 No Minecraft Plugins or Addons required. 
 
+![Showing Connection Messages in Telegram Chat](../main/message.PNG)
+
 ## Requirements
 - Minecraft Bedrock Server Running in Docker with ```stdin_open: true``` and ```tty: true```
 - Running Minecraft Logger Container with Write Access to Docker Socket on the same Host
