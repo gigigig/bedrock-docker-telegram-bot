@@ -52,7 +52,7 @@ while ($true) {
             # Determine the message based on the log entry type
             if ($entry -match "Player connected") {
                 Write-Verbose -Message "Connect: $($player)" -Verbose   
-                $message = "Player connected: _$($player.Substring(0,31))_ *$($player.Substring(31))*, xuid: $($xuid.Substring(31))"
+                $message = "Player connected: *$($player.Substring(31))*, xuid: $($xuid.Substring(31))"
                 $payload = @{
                     "chat_id"                   = $telegramChatId;
                     "text"                      = $message
@@ -61,7 +61,7 @@ while ($true) {
             }
             else {
                 Write-Verbose -Message "Disconnect: $($player)" -Verbose
-                $message = "Player disconnected: _$($player.Substring(0,31))_ *$($player.Substring(31))*, xuid: $($xuid.Substring(31))"
+                $message = "Player disconnected: *$($player.Substring(31))*, xuid: $($xuid.Substring(31))"
                 $payload = @{
                     "chat_id"                   = $telegramChatId;
                     "text"                      = $message
