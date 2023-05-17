@@ -36,7 +36,7 @@ $previousEntries = @()
 while ($true) {
     Start-Sleep -Seconds 5
     # Retrieve the Docker logs of the specified container
-    $dockerLogs = docker logs --tail=3 $containerName
+    $dockerLogs = docker logs --tail=32 $containerName
     
     # Filter new log entries matching the specified patterns
     $newEntries = $dockerLogs | Where-Object { $_ -match "(Player connected|Player disconnected): (.+), xuid: (.+)" }
