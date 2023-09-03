@@ -26,7 +26,6 @@ Write-Verbose -Message "Posting to Chat-ID: $env:MGRAM_CHAT_ID" -Verbose
 Write-Verbose -Message "Using Bot-Token (REDACTED): $($env:MGRAM_BOT_TOKEN.Substring(0,6))..." -Verbose
 
 # Construct the Telegram webhook URL
-$telegramWebhookUrl = "https://api.telegram.org/bot$($telegramBotToken)/sendMessage?chat_id=$($telegramChatId)"
 $parsemode = "markdown"
 
 # Initialize an array to store previous log entries
