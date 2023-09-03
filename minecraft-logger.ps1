@@ -3,7 +3,7 @@
     Docker Minecraft Bedrock Server Player Notifications to Telegram
     Github: https://github.com/gigigig/bedrock-docker-telegram-bot
 .DESCRIPTION
-    This script monitors the Docker logs of a specified Minecraft container and sends new player connection and disconnection events to a Telegram webhook. 
+    This script monitors the Docker logs of a specified Minecraft container and sends new player connection and disconnection events to a Telegram webhook.
     The Telegram bot token, chat ID, and container name should be set as environment variables.
 
 .PARAMETER MGRAM_BOT_TOKEN
@@ -26,7 +26,6 @@ Write-Verbose -Message "Posting to Chat-ID: $env:MGRAM_CHAT_ID" -Verbose
 Write-Verbose -Message "Using Bot-Token (REDACTED): $($env:MGRAM_BOT_TOKEN.Substring(0,6))..." -Verbose
 
 # Construct the Telegram webhook URL
-$telegramWebhookUrl = "https://api.telegram.org/bot$($telegramBotToken)/sendMessage?chat_id=$($telegramChatId)"
 $parsemode = "markdown"
 
 # Initialize an array to store previous log entries
@@ -37,10 +36,10 @@ while ($true) {
     Start-Sleep -Seconds 5
     # Retrieve the Docker logs of the specified container
     $dockerLogs = docker logs --tail=32 $containerName
-    
+
     # Filter new log entries matching the specified patterns
     $newEntries = $dockerLogs | Where-Object { $_ -match "(Player connected|Player disconnected): (.+), xuid: (.+)" }
-    
+
     # Process new entries and send them as Telegram webhooks
     foreach ($entry in $newEntries) {
         # Check if the entry has been previously sent
@@ -48,15 +47,15 @@ while ($true) {
             # Extract the player and xuid information from the log entry
             $player = $entry -replace "(Player connected|Player disconnected): (.+), xuid: (.+)", '$2'
             $xuid = $entry -replace "(Player connected|Player disconnected): (.+), xuid: (.+)", '$3'
-            
+
             # Determine the message based on the log entry type
             if ($entry -match "Player connected") {
-                Write-Verbose -Message "Connect: $($player)" -Verbose   
+                Write-Verbose -Message "Connect: $($player)" -Verbose
                 $message = "Player connected: *$($player.Substring(31))*, xuid: $($xuid.Substring(31))"
                 $payload = @{
                     "chat_id"                   = $telegramChatId;
                     "text"                      = $message
-                    "parse_mode"                = $parsemode; 
+                    "parse_mode"                = $parsemode;
                 }
             }
             else {
@@ -65,10 +64,10 @@ while ($true) {
                 $payload = @{
                     "chat_id"                   = $telegramChatId;
                     "text"                      = $message
-                    "parse_mode"                = $parsemode;   
+                    "parse_mode"                = $parsemode;
                 }
             }
-            
+
             # Send the message as a Telegram webhook
             $sendmgram = Invoke-RestMethod `
             -Uri ("https://api.telegram.org/bot$($telegramBotToken)/sendMessage" -f $BotToken) `
