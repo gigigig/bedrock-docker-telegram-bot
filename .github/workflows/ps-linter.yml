@@ -1,5 +1,8 @@
 name: PowerShell lint
-on: push
+on: 
+  push:
+    paths-ignore:
+      - '**.md'
 
 jobs:
     lint-with-PSScriptAnalyzer:
