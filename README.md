@@ -19,7 +19,7 @@ Define the environment variables:
 
 ```yaml
 bds-logger:
-    image: ghcr.io/gigigig/minecrafttelegramdocker:3.1
+    image: ghcr.io/gigigig/minecrafttelegramdocker:3.2
     environment:
       MGRAM_BOT_TOKEN: "YOUR_TOKEN"
       MGRAM_CHAT_ID: "YOUR_CHAT_ID"
