@@ -1,4 +1,7 @@
 # bedrock-docker-telegram-bot
+[![PowerShell lint](https://github.com/gigigig/bedrock-docker-telegram-bot/actions/workflows/ps-linter.yml/badge.svg)](https://github.com/gigigig/bedrock-docker-telegram-bot/actions/workflows/ps-linter.yml)
+[![Docker Build](https://github.com/gigigig/bedrock-docker-telegram-bot/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/gigigig/bedrock-docker-telegram-bot/actions/workflows/docker-publish.yml)
+
 A Telegram Notification Service for Docker Minecraft Bedrock Servers.
 Notifies upon Connection or Disconnection of Players. 
 No Minecraft Plugins or Addons required. 
